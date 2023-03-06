@@ -2,6 +2,7 @@ package route
 
 import (
 	"encoding/json"
+	bookhandler "example/server/handler/book_handler"
 	globalhandler "example/server/handler/global_handler"
 	"log"
 	"net/http"
@@ -33,6 +34,13 @@ func HandlerFunc() {
 	})
 
 	router.HandleFunc("/", HomeHandler).Methods("GET")
+
+	// buku
+	router.HandleFunc("/api/buku", bookhandler.GetAllBooks).Methods("GET")
+	router.HandleFunc("/api/buku", bookhandler.Store).Methods("POST")
+	router.HandleFunc("/api/buku/detail/{book_id}", bookhandler.Detail).Methods("GET")
+	router.HandleFunc("/api/buku/update/{book_id}", bookhandler.Update).Methods("PUT")
+	router.HandleFunc("/api/buku/delete/{book_id}", bookhandler.Delete).Methods("DELETE")
 
 	log.Fatal(http.ListenAndServe(":"+Port, router))
 }

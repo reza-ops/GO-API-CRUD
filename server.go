@@ -1,9 +1,10 @@
 package main
 
 import (
-	book_migration "example/server/db/migration/book"
+	"example/server/route"
 )
 
 func main() {
-	book_migration.MigrateBooks()
+	// book_migration.MigrateBooks()
+	route.HandlerFunc()
 }
